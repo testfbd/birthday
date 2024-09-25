@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #ffdab9;
+        color: #333;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .happy-birthday-text {
+        font-size: 3rem;
+        font-weight: bold;
+        background: linear-gradient(
+          90deg,
+          red,
+          orange,
+          yellow,
+          green,
+          blue,
+          indigo,
+          violet
+        );
+        background-size: 400%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: rainbow 5s ease-in-out infinite;
+      }
+
+      @keyframes rainbow {
+        0% {
+          background-position: 0%;
+        }
+        50% {
+          background-position: 100%;
+        }
+        100% {
+          background-position: 0%;
+        }
+      }
+
+      .slider img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        max-width: 100%; /* Ensures it doesn't exceed container size */
+        object-fit: cover; /* Ensures the image covers the container without distorting */
+        image-rendering: auto; /* Allows the browser to render images at their best quality */
+      }
+
+      .joke-container {
+        margin-top: 20px;
+      }
+
+      #joke {
+        font-size: 1.5rem;
+        font-style: italic;
+      }
+
+      @media (min-width: 769px) {
+        .slider img {
+          max-width: 40%; /* Make the images smaller on larger screens */
+          margin: 0 auto; /* Center the image */
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        #joke {
+          font-size: 1.3rem;
+        }
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .slider {
+          width: 90%; /* Adjust width for mobile */
+        }
+
+        #joke {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        .slider {
+          width: 100%; /* Full width for smaller devices */
+        }
+
+        #joke {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="happy-birthday-text">Happy Birthday!</h1>
+      <div class="slider">
+        <img
+          id="slider-image"
+          src="images/photo_2024-09-25_12-29-12.jpg"
+          alt="Birthday Photo"
+        />
+      </div>
+      <div class="joke-container">
+        <p id="joke">Loading joke...</p>
+      </div>
+    </div>
+
+    <audio autoplay loop>
+      <source src="happy_birthday_song.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      const images = [
+        "images/photo_2024-09-25_13-11-36.jpg",
+        "images/photo_2024-09-25_12-29-12.jpg",
+        "images/photo_2024-09-25_12-29-14.jpg",
+        "images/photo_2024-09-25_12-29-15.jpg",
+        "images/photo_2024-09-25_12-29-16.jpg",
+        "images/photo_2024-09-25_13-11-35.jpg",
+      ];
+
+      const jokes = [
+        "Age is merely the number of years the world has been enjoying you. Happy Birthday!",
+        "Now that you're 20, you can finally say, 'When I was a teenager...' and sound super wise!",
+        "You know you’re getting old when the candles cost more than the cake!",
+        "At least you’re not as old as you will be next year!",
+        "It’s not the years in your life that count. It’s the life in your years!",
+        "Happy Birthday! They say age is just a number, but in your case, it's a really high one!",
+        "Congrats! You're one year closer to getting that senior discount at the movies!",
+        "Happy Birthday! Don’t worry about your age... wine, cheese, and you all get better with time!",
+        "Happy Birthday! At least you’re not as old as you will be next year!",
+        "They say with age comes wisdom. You must be a genius by now!",
+        "Happy Birthday! Don't count the candles, just enjoy the glow!",
+        "Another year older? Look on the bright side—you're not a fossil yet!",
+        "You're not old... you’re just chronologically gifted. Happy Birthday!",
+        "Happy Birthday! Remember, you're not getting older, you're leveling up!",
+        "It's your special day—time to eat cake like it's a competitive sport!",
+        "Don't worry about your age. You will be older next year!",
+      ];
+
+      let currentIndex = 0;
+
+      function changeSlide() {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.getElementById("slider-image").src = images[currentIndex];
+        document.getElementById("joke").innerText = jokes[currentIndex];
+      }
+
+      // Initialize the first image and joke
+      document.getElementById("slider-image").src = images[currentIndex];
+      document.getElementById("joke").innerText = jokes[currentIndex];
+
+      setInterval(changeSlide, 4000); // Change image every 3 seconds
+    </script>
+  </body>
+</html>
